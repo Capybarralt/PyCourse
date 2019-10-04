@@ -2,6 +2,11 @@
 DRY
 """
 
+__all__ = (
+    'user_input', 'input_int', 'input_float', 'confirm', 'multi_line_input'
+)
+
+
 def user_input(msg='Введите значение', default=None, value_callback=None,
                trim_spaces=True, show_default=True, required=False):
     if show_default and default is not None:
@@ -30,14 +35,14 @@ def user_input(msg='Введите значение', default=None, value_callba
             print('Требуется внести значение')
 
 def input_int(msg='Введите число', default=None, required=False):
-    return user_input(msg, default, value_callback=int, required=requiered)
+    return user_input(msg, default, value_callback=int, required=required)
 
 def input_int_bin(msg='Введите число', default=None, required=False):
     return user_input(msg, default, value_callback=lambda v: int(v, 2),
                       required=requiered)
 
 def input_float(msg='Введите число', default=None, required=False):
-    return user_input(msg, default, value_callback=float, required=requiered)
+    return user_input(msg, default, value_callback=float, required=required)
 
 #user_input('Введите имя', value_callback=int, required=True)
 #input_int()
@@ -106,4 +111,7 @@ def multi_line_input(msg='Введите текст', default=None):
             print('\n')
             return '\n'.join(text)
 
-print(multi_line_input())
+#print(__name__)
+# Выполняется только если файл исполняемый, а не импортированный модуль
+if __name__ == '__main__':
+    print(multi_line_input())
