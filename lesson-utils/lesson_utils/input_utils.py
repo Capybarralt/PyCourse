@@ -2,6 +2,8 @@
 DRY
 """
 
+from datetime import datetime
+
 __all__ = (
     'user_input', 'input_int', 'input_float', 'confirm', 'multi_line_input'
 )
@@ -110,6 +112,23 @@ def multi_line_input(msg='Введите текст', default=None):
         except EOFError:
             print('\n')
             return '\n'.join(text)
+
+def input_datetime(fmt, msg='Введите дату: ', default=None, required=False):
+    if default is not None:
+        default = datetime.strptime(fmt, default)
+
+    return user_input(
+        msg, default, required=required,
+        value_callback=lambda value: datetime.strptime(value, fmt)
+    )
+
+def input_date(mt, msg='Введите дату: ', default=None, required=Fals):
+    value = input_datetime(fmt, msg, default, required=required)
+
+    if value is None:
+        return value
+
+    return value.date()
 
 #print(__name__)
 # Выполняется только если файл исполняемый, а не импортированный модуль

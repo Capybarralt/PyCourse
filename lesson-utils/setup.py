@@ -24,5 +24,8 @@ setup(
     license='Appache License 2.0',
     author='capybarralt',
     author_email='capybarralt@gmail.com',
-    packages=['lesson_utils']
+    packages=['lesson_utils'],
+    instal_requires=[
+        'appdirs',
+    ]
 )
