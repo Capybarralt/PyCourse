@@ -5,7 +5,8 @@ DRY
 from datetime import datetime
 
 __all__ = (
-    'user_input', 'input_int', 'input_float', 'confirm', 'multi_line_input'
+    'user_input', 'input_int', 'input_float', 'confirm', 'multi_line_input',
+    'input_datetime', 'input_date'
 )
 
 
@@ -115,14 +116,14 @@ def multi_line_input(msg='Введите текст', default=None):
 
 def input_datetime(fmt, msg='Введите дату: ', default=None, required=False):
     if default is not None:
-        default = datetime.strptime(fmt, default)
+        default = default.strftime(fmt)
 
     return user_input(
         msg, default, required=required,
         value_callback=lambda value: datetime.strptime(value, fmt)
     )
 
-def input_date(mt, msg='Введите дату: ', default=None, required=Fals):
+def input_date(mt, msg='Введите дату: ', default=None, required=False):
     value = input_datetime(fmt, msg, default, required=required)
 
     if value is None:
